@@ -1,0 +1,23 @@
+{
+  "name": "falco-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "falco": "./src/index.ts"
+  },
+  "scripts": {
+    "dev": "bun src/index.ts",
+    "start": "bun src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "build:native": "bun build src/index.ts --compile --minify --sourcemap --bytecode --define BUILD_VERSION=\"\\\"$(bun -e 'console.log(require(\"./package.json\").version)')\\\"\" --outfile dist/falco"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.3.1",
+    "pdf-lib": "^1.17.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.6.0"
+  }
+}
