@@ -271,7 +271,10 @@ hr {
 
 .hh-page-hero .hh-card__project {
   display: block;
-  margin-bottom: 12px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-bottom: 10px;
 }
 
 .hh-page-hero h1 {
