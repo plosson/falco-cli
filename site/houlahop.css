@@ -87,6 +87,39 @@ a {
 
 @keyframes hh-blink { 50% { opacity: 0; } }
 
+/* ---- Breadcrumb wordmark for tool sites: ~/houlahop/<tool>▍ ---- */
+.hh-crumbs {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.hh-crumbs a {
+  color: var(--hh-ink);
+}
+
+.hh-crumbs a:hover {
+  color: var(--hh-accent);
+}
+
+.hh-crumbs a:first-child::before {
+  content: '~/';
+  color: var(--hh-accent);
+}
+
+.hh-crumbs .hh-sep {
+  color: var(--hh-muted);
+}
+
+.hh-crumbs::after {
+  content: '▍';
+  color: var(--hh-accent);
+  animation: hh-blink 1.2s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hh-crumbs::after { animation: none; }
+}
+
 .hh-nav {
   display: flex;
   gap: 24px;
