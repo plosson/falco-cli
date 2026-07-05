@@ -17,7 +17,7 @@
   --hh-surface: #161b22;
   --hh-accent: #3fb950;            /* terminal green — pages override this */
   --hh-font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
-  --hh-max-width: 1024px;
+  --hh-max-width: 800px;
   --hh-measure: 44rem;
   --hh-radius: 8px;
 }
@@ -259,7 +259,7 @@ hr {
 /* ---- Capability page ---- */
 .hh-page {
   width: 100%;
-  max-width: calc(var(--hh-measure) + 48px);
+  max-width: var(--hh-max-width);
   margin: 0 auto;
   padding: 0 24px;
   flex: 1;
