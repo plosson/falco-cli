@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to falco.houlahop.com
+    name: Deploy to falcio.houlahop.com
     runs-on: ubuntu-latest
 
     steps:
@@ -27,4 +27,4 @@ jobs:
           SITEIO_TOKEN: ${{ secrets.SITEIO_TOKEN }}
 
       - name: Deploy site
-        run: siteio sites deploy site --subdomain falco
+        run: siteio sites deploy site --subdomain falcio

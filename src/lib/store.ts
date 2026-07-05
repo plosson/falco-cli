@@ -16,7 +16,7 @@ export type Session = {
 
 function configDir(): string {
   const xdg = process.env.XDG_CONFIG_HOME;
-  return xdg ? join(xdg, "falco-cli") : join(homedir(), ".config", "falco-cli");
+  return xdg ? join(xdg, "falcio") : join(homedir(), ".config", "falcio");
 }
 
 export function sessionPath(): string {

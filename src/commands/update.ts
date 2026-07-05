@@ -4,12 +4,12 @@ import * as os from "node:os";
 import { prompt } from "../lib/prompt.ts";
 import { getVersion } from "../lib/version.ts";
 
-const GITHUB_REPO = "plosson/falco-cli";
+const GITHUB_REPO = "plosson/falcio";
 
-const HELP = `falco update — update falco to the latest release
+const HELP = `falcio update — update falcio to the latest release
 
 Usage:
-  falco update [--check] [--force] [-y]
+  falcio update [--check] [--force] [-y]
 
 Options:
   --check          Only check for updates, don't install.
@@ -41,7 +41,7 @@ async function fetchLatestRelease(): Promise<GitHubRelease> {
   const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/releases/latest`, {
     headers: {
       Accept: "application/vnd.github.v3+json",
-      "User-Agent": "falco-updater",
+      "User-Agent": "falcio-updater",
     },
   });
   if (!res.ok) {
@@ -83,7 +83,7 @@ async function writeChunk(stream: fs.WriteStream, chunk: Uint8Array): Promise<vo
 }
 
 async function downloadBinary(url: string, dest: string): Promise<void> {
-  const res = await fetch(url, { headers: { "User-Agent": "falco-updater" } });
+  const res = await fetch(url, { headers: { "User-Agent": "falcio-updater" } });
   if (!res.ok || !res.body) throw new Error(`Download failed: ${res.statusText}`);
 
   const total = Number(res.headers.get("content-length") || 0);
@@ -131,7 +131,7 @@ function moveFile(src: string, dest: string): void {
 
 async function updateBinary(downloadUrl: string, targetPath: string): Promise<void> {
   // Download next to the target so the final rename stays on one filesystem.
-  const tmpFile = path.join(path.dirname(targetPath), `.falco-update-${Date.now()}`);
+  const tmpFile = path.join(path.dirname(targetPath), `.falcio-update-${Date.now()}`);
 
   console.error("Downloading update...");
   await downloadBinary(downloadUrl, tmpFile);
@@ -183,7 +183,7 @@ export async function runUpdate(args: string[]): Promise<number> {
 
   const currentVersion = getVersion();
   const platform = getPlatform();
-  const assetName = `falco-${platform}`;
+  const assetName = `falcio-${platform}`;
 
   console.error(`Current version: ${currentVersion}`);
   console.error("Checking for updates...");
@@ -233,7 +233,7 @@ export async function runUpdate(args: string[]): Promise<number> {
     console.error("");
     console.error("Automatic update failed. You can reinstall manually:");
     console.error("");
-    console.error(`  curl -LsSf https://falco.houlahop.com/install | sh`);
+    console.error(`  curl -LsSf https://falcio.houlahop.com/install | sh`);
     console.error("");
     throw error;
   }

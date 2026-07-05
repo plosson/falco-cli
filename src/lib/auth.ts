@@ -33,11 +33,11 @@ function applyRefresh(session: Session, r: Extract<RefreshResult, { type: "succe
 export async function ensureAccessToken(): Promise<{ session: Session; accessToken: string }> {
   const session = await loadSession();
   if (!session) {
-    throw new AuthError("Not logged in. Run `falco login` first.");
+    throw new AuthError("Not logged in. Run `falcio login` first.");
   }
   if (Date.now() >= session.refresh_expires_at) {
     throw new AuthError(
-      "Refresh token expired. Run `falco login` again.",
+      "Refresh token expired. Run `falcio login` again.",
     );
   }
   if (cached && cached.expires_at - ACCESS_LEEWAY_MS > Date.now()) {
@@ -48,7 +48,7 @@ export async function ensureAccessToken(): Promise<{ session: Session; accessTok
   if (r.type !== "success") {
     throw new AuthError(
       `Refresh failed (HTTP ${r.status}): ${r.details ?? "unknown error"}. ` +
-        `Try \`falco login\` again.`,
+        `Try \`falcio login\` again.`,
     );
   }
   const next = applyRefresh(session, r);

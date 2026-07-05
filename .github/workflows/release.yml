@@ -52,11 +52,11 @@ jobs:
       matrix:
         include:
           - target: darwin-arm64
-            artifact: falco-darwin-arm64
+            artifact: falcio-darwin-arm64
           - target: linux-x64
-            artifact: falco-linux-x64
+            artifact: falcio-linux-x64
           - target: linux-arm64
-            artifact: falco-linux-arm64
+            artifact: falcio-linux-arm64
 
     steps:
       - name: Checkout

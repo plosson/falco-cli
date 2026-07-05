@@ -34,7 +34,7 @@ function parseArgs(args: string[]): Options {
 }
 
 function printHelp(): void {
-  console.log(`Usage: falco peppol list [--since YYYY-MM-DD] [--sender <vat>] [--json]
+  console.log(`Usage: falcio peppol list [--since YYYY-MM-DD] [--sender <vat>] [--json]
 
 Lists inbound Peppol documents for the active organization. Default filters
 include every import state (imported / not-imported / processing / accepted

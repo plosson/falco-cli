@@ -83,7 +83,7 @@ function parseArgs(args: string[]): Options {
 }
 
 function printHelp(): void {
-  console.log(`Usage: falco peppol sync --out <dir> [--since YYYY-MM-DD] [--sender <vat>] [--extract-pdf] [--force]
+  console.log(`Usage: falcio peppol sync --out <dir> [--since YYYY-MM-DD] [--sender <vat>] [--extract-pdf] [--force]
 
 Download every matching inbound Peppol document into <dir> as "<id>.xml".
 Existing files are skipped by default (use --force to re-download).

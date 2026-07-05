@@ -11,18 +11,18 @@ import { runUpdate } from "./commands/update.ts";
 import { AuthError } from "./lib/auth.ts";
 import { getVersion } from "./lib/version.ts";
 
-const HELP = `falco — CLI for your Falco account
+const HELP = `falcio — CLI for your Falco account
 
 Usage:
-  falco login
-  falco whoami
-  falco logout
-  falco peppol list      [--since YYYY-MM-DD] [--sender <vat>] [--json]
-  falco peppol get       <id> [--out <file|dir|->] [--extract-pdf]
-  falco peppol sync      --out <dir> [--since YYYY-MM-DD] [--sender <vat>] [--extract-pdf] [--force]
-  falco peppol mark-paid <id> [--status Paid|NotPaid] [--unpaid] [--json]
-  falco invoices sync    --out <dir> [--since YYYY-MM-DD] [--customer <name>] [--include Invoice,CreditNote] [--force]
-  falco update           [--check] [--force] [-y]
+  falcio login
+  falcio whoami
+  falcio logout
+  falcio peppol list      [--since YYYY-MM-DD] [--sender <vat>] [--json]
+  falcio peppol get       <id> [--out <file|dir|->] [--extract-pdf]
+  falcio peppol sync      --out <dir> [--since YYYY-MM-DD] [--sender <vat>] [--extract-pdf] [--force]
+  falcio peppol mark-paid <id> [--status Paid|NotPaid] [--unpaid] [--json]
+  falcio invoices sync    --out <dir> [--since YYYY-MM-DD] [--customer <name>] [--include Invoice,CreditNote] [--force]
+  falcio update           [--check] [--force] [-y]
 
 Options:
   -h, --help       Show this help.

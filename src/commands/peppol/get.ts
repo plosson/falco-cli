@@ -38,12 +38,12 @@ function parseArgs(args: string[]): Options {
 }
 
 function printHelp(): void {
-  console.log(`Usage: falco peppol get <id> [--out <file|dir|->] [--extract-pdf]
+  console.log(`Usage: falcio peppol get <id> [--out <file|dir|->] [--extract-pdf]
 
 Download a single inbound Peppol document as UBL XML.
 
 Positional:
-  <id>   Document id (UUID), as listed by \`falco peppol list\`.
+  <id>   Document id (UUID), as listed by \`falcio peppol list\`.
 
 Options:
   --out <path>     Where to write the XML. Accepts:

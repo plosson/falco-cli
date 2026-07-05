@@ -1,16 +1,16 @@
 {
-  "name": "falco-cli",
+  "name": "falcio",
   "version": "0.1.1",
   "private": true,
   "type": "module",
   "bin": {
-    "falco": "./src/index.ts"
+    "falcio": "./src/index.ts"
   },
   "scripts": {
     "dev": "bun src/index.ts",
     "start": "bun src/index.ts",
     "typecheck": "tsc --noEmit",
-    "build:native": "bun build src/index.ts --compile --minify --sourcemap --bytecode --define BUILD_VERSION=\"\\\"$(bun -e 'console.log(require(\"./package.json\").version)')\\\"\" --outfile dist/falco"
+    "build:native": "bun build src/index.ts --compile --minify --sourcemap --bytecode --define BUILD_VERSION=\"\\\"$(bun -e 'console.log(require(\"./package.json\").version)')\\\"\" --outfile dist/falcio"
   },
   "dependencies": {
     "fast-xml-parser": "^5.3.1",

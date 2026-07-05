@@ -299,7 +299,7 @@ function drawPaymentBlock(ctx: Ctx, inv: UblInvoice): void {
 function drawFooter(ctx: Ctx): void {
   const y = MARGIN_BOTTOM - 18;
   const text =
-    "Rendered by falco-cli from the UBL Peppol document. " +
+    "Rendered by falcio from the UBL Peppol document. " +
     "This is a machine-generated visual rendition — the UBL XML is the legal document.";
   drawText(ctx, text, MARGIN_X, y, { size: 7.5, color: MUTED });
 }
@@ -307,8 +307,8 @@ function drawFooter(ctx: Ctx): void {
 export async function renderUblToPdf(inv: UblInvoice): Promise<Uint8Array> {
   const doc = await PDFDocument.create();
   doc.setTitle(`${inv.kind} ${inv.number}`);
-  doc.setProducer("falco-cli");
-  doc.setCreator("falco-cli");
+  doc.setProducer("falcio");
+  doc.setCreator("falcio");
   if (inv.seller.name) doc.setAuthor(inv.seller.name);
   const page = doc.addPage([A4_WIDTH, A4_HEIGHT]);
   const regular = await doc.embedFont(StandardFonts.Helvetica);

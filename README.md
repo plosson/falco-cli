@@ -1,27 +1,27 @@
-# falco
+# falcio
 
 CLI for your Falco account — sync received peppol invoices, issued sales invoices and payment status from the terminal.
 
 ## Install
 
 ```sh
-curl -LsSf https://falco.houlahop.com/install | sh
+curl -LsSf https://falcio.houlahop.com/install | sh
 ```
 
-Supported platforms: macOS (Apple Silicon), Linux x64 / arm64. The installer downloads a single self-contained binary from GitHub Releases into `~/.local/bin` (override with `FALCO_INSTALL_DIR` or `--install-dir`).
+Supported platforms: macOS (Apple Silicon), Linux x64 / arm64. The installer downloads a single self-contained binary from GitHub Releases into `~/.local/bin` (override with `FALCIO_INSTALL_DIR` or `--install-dir`).
 
 ## Usage
 
 ```
-falco login
-falco whoami
-falco logout
-falco peppol list      [--since YYYY-MM-DD] [--sender <vat>] [--json]
-falco peppol get       <id> [--out <file|dir|->] [--extract-pdf]
-falco peppol sync      --out <dir> [--since YYYY-MM-DD] [--sender <vat>] [--extract-pdf] [--force]
-falco peppol mark-paid <id> [--status Paid|NotPaid] [--unpaid] [--json]
-falco invoices sync    --out <dir> [--since YYYY-MM-DD] [--customer <name>] [--include Invoice,CreditNote] [--force]
-falco update           [--check] [--force] [-y]
+falcio login
+falcio whoami
+falcio logout
+falcio peppol list      [--since YYYY-MM-DD] [--sender <vat>] [--json]
+falcio peppol get       <id> [--out <file|dir|->] [--extract-pdf]
+falcio peppol sync      --out <dir> [--since YYYY-MM-DD] [--sender <vat>] [--extract-pdf] [--force]
+falcio peppol mark-paid <id> [--status Paid|NotPaid] [--unpaid] [--json]
+falcio invoices sync    --out <dir> [--since YYYY-MM-DD] [--customer <name>] [--include Invoice,CreditNote] [--force]
+falcio update           [--check] [--force] [-y]
 ```
 
 Most commands are read-only; `peppol mark-paid` writes the invoice payment status.
@@ -29,7 +29,7 @@ Most commands are read-only; `peppol mark-paid` writes the invoice payment statu
 ## Updating
 
 ```sh
-falco update
+falcio update
 ```
 
 Checks GitHub Releases for a newer version and replaces the running binary in place.
@@ -42,7 +42,7 @@ Requires [bun](https://bun.sh).
 bun install
 bun run dev -- --help     # run from source
 bun run typecheck         # tsc --noEmit
-bun run build:native      # compile a local binary to dist/falco
+bun run build:native      # compile a local binary to dist/falcio
 ```
 
 ## Releasing

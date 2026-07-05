@@ -57,7 +57,7 @@ function parseArgs(args: string[]): Options {
 }
 
 function printHelp(): void {
-  console.log(`Usage: falco invoices sync --out <dir> [--since YYYY-MM-DD] [--customer <name>] [--include Invoice,CreditNote[,Estimate,Proforma,AdvancePayment]] [--force]
+  console.log(`Usage: falcio invoices sync --out <dir> [--since YYYY-MM-DD] [--customer <name>] [--include Invoice,CreditNote[,Estimate,Proforma,AdvancePayment]] [--force]
 
 Download every outgoing sales billing document (the "Sales invoices" screen
 in Falco) into <dir> as "YYYY-MM-DD_<customer>_<number>.pdf".

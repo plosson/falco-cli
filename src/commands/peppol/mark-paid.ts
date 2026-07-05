@@ -49,13 +49,13 @@ function parseArgs(args: string[]): Options {
 }
 
 function printHelp(): void {
-  console.log(`Usage: falco peppol mark-paid <id> [--status Paid|NotPaid] [--unpaid] [--json]
+  console.log(`Usage: falcio peppol mark-paid <id> [--status Paid|NotPaid] [--unpaid] [--json]
 
 Manually set the payment status of a received invoice in Falco.
 
 Positional:
   <id>   Identifies the invoice by any of: peppol document id (UUID, as listed by
-         \`falco peppol list\`), invoice number (e.g. "I-2026-067"), or the
+         \`falcio peppol list\`), invoice number (e.g. "I-2026-067"), or the
          internal document id.
 
 Options:
@@ -92,7 +92,7 @@ export async function runPeppolMarkPaid(args: string[]): Promise<number> {
   const found = list.data.filter((d) => matches(d, opts.ref));
   if (found.length === 0) {
     console.error(`No invoice found matching "${opts.ref}".`);
-    console.error("Pass a peppol document id, invoice number, or document id (see `falco peppol list`).");
+    console.error("Pass a peppol document id, invoice number, or document id (see `falcio peppol list`).");
     return 1;
   }
   if (found.length > 1) {
