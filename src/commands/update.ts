@@ -233,7 +233,7 @@ export async function runUpdate(args: string[]): Promise<number> {
     console.error("");
     console.error("Automatic update failed. You can reinstall manually:");
     console.error("");
-    console.error(`  curl -LsSf https://raw.githubusercontent.com/${GITHUB_REPO}/main/site/install | sh`);
+    console.error(`  curl -LsSf https://raw.githubusercontent.com/${GITHUB_REPO}/main/install.sh | sh`);
     console.error("");
     throw error;
   }

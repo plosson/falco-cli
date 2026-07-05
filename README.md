@@ -5,7 +5,7 @@ CLI for your Falco account — sync received peppol invoices, issued sales invoi
 ## Install
 
 ```sh
-curl -LsSf https://raw.githubusercontent.com/plosson/falco-cli/main/site/install | sh
+curl -LsSf https://raw.githubusercontent.com/plosson/falco-cli/main/install.sh | sh
 ```
 
 Supported platforms: macOS (Apple Silicon), Linux x64 / arm64. The installer downloads a single self-contained binary from GitHub Releases into `~/.local/bin` (override with `FALCO_INSTALL_DIR` or `--install-dir`).
