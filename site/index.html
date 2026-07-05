@@ -13,8 +13,48 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="houlahop.css?v=2">
+  <link rel="stylesheet" href="hh-terminal.css?v=1">
   <style>
     :root { --hh-accent: #d29922; }
+
+    .hh-install-cmd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--hh-surface);
+      border: 1px solid var(--hh-border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      margin: 16px 0 10px;
+    }
+
+    .hh-install-cmd code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .hh-install-cmd .prompt { color: var(--hh-accent); font-weight: 600; }
+
+    .hh-copy-btn {
+      font-family: inherit;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--hh-muted);
+      background: none;
+      border: 1px solid var(--hh-border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .hh-copy-btn:hover { color: var(--hh-ink); border-color: var(--hh-border-strong); }
+    .hh-copy-btn.copied { color: var(--hh-accent); border-color: var(--hh-accent); }
+
+    .hh-update-hint { font-size: 0.8rem; color: var(--hh-faint); }
   </style>
 </head>
 <body>
@@ -32,26 +72,41 @@
 
     <section class="hh-page-hero">
       <span class="hh-card__project">falco</span>
-      <h1>I needed my agent to handle my invoices — without clicking through a web app.</h1>
-      <p class="hh-page-hero__summary">Sync Peppol invoices, sales invoices, and payment status from a Falco account — in the terminal.</p>
+      <h1>Your agent syncs Falco invoices from the terminal — no browser.</h1>
+      <p class="hh-page-hero__summary">Peppol invoices, sales invoices, payment status — straight from a Falco account. Read-only by design.</p>
     </section>
+
+    <div class="hh-term">
+      <div class="hh-term-bar"><span class="hh-term-dot"></span><span class="hh-term-dot"></span><span class="hh-term-dot"></span></div>
+      <pre class="hh-term-body" data-hh-terminal></pre>
+    </div>
 
     <section class="hh-section">
       <span class="hh-section__label">01</span>
-      <h2>The problem</h2>
-      <p>My invoicing lives in <a href="https://www.falco-app.be/">Falco</a>, like it does for a lot of Belgian independents — Peppol invoices in, sales invoices out, payment status tracked. All of it behind a web and mobile app. Fine for me, useless for my agents.</p>
-      <p>The only way in was scripting a browser, and I'm not letting a headless browser click around in my accounting.</p>
+      <h2>Install</h2>
+      <div class="hh-install-cmd">
+        <code><span class="prompt">$</span> curl -LsSf https://falco.houlahop.com/install | sh</code>
+        <button class="hh-copy-btn" onclick="copyCommand(this, 'curl -LsSf https://falco.houlahop.com/install | sh')">Copy</button>
+      </div>
+      <p class="hh-update-hint">macOS (Apple Silicon) and Linux. Already installed? Run <code>falco update</code>. You can also download binaries from <a href="https://github.com/plosson/falco-cli/releases">GitHub Releases</a>.</p>
     </section>
 
     <section class="hh-section">
       <span class="hh-section__label">02</span>
+      <h2>The problem</h2>
+      <p>I needed my agent to handle my invoices — without clicking through a web app. My invoicing lives in <a href="https://www.falco-app.be/">Falco</a>, like it does for a lot of Belgian independents — Peppol invoices in, sales invoices out, payment status tracked. All of it behind a web and mobile app. Fine for me, useless for my agents.</p>
+      <p>The only way in was scripting a browser, and I'm not letting a headless browser click around in my accounting.</p>
+    </section>
+
+    <section class="hh-section">
+      <span class="hh-section__label">03</span>
       <h2>The solution</h2>
       <p>falco talks to Falco directly. It syncs received Peppol invoices, issued sales invoices, and payment status from the terminal — no browser involved.</p>
       <p>It's deliberately boring: almost every command is read-only. The one thing it can write is marking an invoice paid or unpaid. Add <code>--json</code> and an agent can work with the results.</p>
     </section>
 
     <section class="hh-section">
-      <span class="hh-section__label">03</span>
+      <span class="hh-section__label">04</span>
       <h2>When to use it</h2>
       <p>Use falco when your agents work with a Falco account and need to:</p>
       <ul>
@@ -63,7 +118,7 @@
     </section>
 
     <section class="hh-section">
-      <span class="hh-section__label">04</span>
+      <span class="hh-section__label">05</span>
       <h2>Features</h2>
       <ul>
         <li>List, get, and sync received Peppol invoices, with date and sender filters</li>
@@ -76,13 +131,8 @@
     </section>
 
     <section class="hh-section">
-      <span class="hh-section__label">05</span>
-      <h2>Getting started</h2>
-      <p>Install, log in, sync:</p>
-      <pre><code><span class="prompt">$</span> curl -LsSf https://falco.houlahop.com/install | sh
-<span class="prompt">$</span> falco login
-<span class="prompt">$</span> falco peppol sync --out ./invoices --extract-pdf
-<span class="prompt">$</span> falco invoices sync --out ./sales --since 2026-01-01</code></pre>
+      <span class="hh-section__label">06</span>
+      <h2>Source</h2>
       <p>Source, documentation, and examples: <a href="https://github.com/plosson/falco-cli">github.com/plosson/falco-cli</a></p>
     </section>
 
@@ -95,5 +145,48 @@
     </div>
   </footer>
 
+  <script>
+    function copyCommand(btn, text) {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    window.hhTerminalFrames = [
+      {
+        cmd: "falco login",
+        output: [
+          "✔ Logged in to your Falco account",
+        ],
+      },
+      {
+        cmd: "falco peppol sync --out ./invoices --extract-pdf",
+        output: [
+          "> Syncing received Peppol invoices",
+          "✔ 12 invoices synced to ./invoices",
+          "✔ 12 PDFs extracted",
+          "  3 invoices unpaid",
+        ],
+      },
+      {
+        cmd: "falco peppol mark-paid inv-2026-042",
+        output: [
+          "✔ inv-2026-042 marked as Paid",
+        ],
+      },
+      {
+        cmd: "falco invoices sync --out ./sales --since 2026-01-01 --json",
+        output: [
+          '{ "synced": 27, "creditNotes": 2, "out": "./sales" }',
+        ],
+      },
+    ];
+  </script>
+  <script src="hh-terminal.js?v=1"></script>
 </body>
 </html>
