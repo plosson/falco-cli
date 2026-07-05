@@ -1,6 +1,6 @@
 #!/bin/sh
 # falco installer script
-# Usage: curl -LsSf https://raw.githubusercontent.com/plosson/falco-cli/main/install.sh | sh
+# Usage: curl -LsSf https://falco.houlahop.com/install | sh
 
 set -e
 
@@ -232,7 +232,7 @@ main() {
                 cat <<EOF
 falco installer
 
-Usage: curl -LsSf https://raw.githubusercontent.com/plosson/falco-cli/main/install.sh | sh
+Usage: curl -LsSf https://falco.houlahop.com/install | sh
 
 Options:
   --install-dir DIR    Install to specific directory

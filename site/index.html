@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I needed my agent to handle my invoices — falco</title>
+  <meta name="description" content="Allow AI agents to perform accounting operations safely through a CLI instead of fragile browser automation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="houlahop.css">
+  <style>
+    :root { --hh-accent: #d29922; }
+  </style>
+</head>
+<body>
+
+  <header class="hh-header">
+    <div class="hh-header__inner">
+      <a href="https://houlahop.com" class="hh-wordmark">houlahop</a>
+      <nav class="hh-nav">
+        <a href="https://houlahop.com">Home</a>
+        <a href="https://github.com/plosson/falco-cli" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="hh-page">
+
+    <section class="hh-page-hero">
+      <span class="hh-card__project">falco</span>
+      <h1>I needed my agent to handle my invoices — without clicking through a web app.</h1>
+      <p class="hh-page-hero__summary">Sync Peppol invoices, sales invoices, and payment status from a Falco account — in the terminal.</p>
+    </section>
+
+    <section class="hh-section">
+      <span class="hh-section__label">01</span>
+      <h2>The problem</h2>
+      <p>My invoicing lives in <a href="https://www.falco-app.be/">Falco</a>, like it does for a lot of Belgian independents — Peppol invoices in, sales invoices out, payment status tracked. All of it behind a web and mobile app. Fine for me, useless for my agents.</p>
+      <p>The only way in was scripting a browser, and I'm not letting a headless browser click around in my accounting.</p>
+    </section>
+
+    <section class="hh-section">
+      <span class="hh-section__label">02</span>
+      <h2>The solution</h2>
+      <p>falco talks to Falco directly. It syncs received Peppol invoices, issued sales invoices, and payment status from the terminal — no browser involved.</p>
+      <p>It's deliberately boring: almost every command is read-only. The one thing it can write is marking an invoice paid or unpaid. Add <code>--json</code> and an agent can work with the results.</p>
+    </section>
+
+    <section class="hh-section">
+      <span class="hh-section__label">03</span>
+      <h2>When to use it</h2>
+      <p>Use falco when your agents work with a Falco account and need to:</p>
+      <ul>
+        <li>Pull incoming Peppol invoices into a folder on a schedule</li>
+        <li>Extract the invoice PDFs for archiving</li>
+        <li>Check payment status and flag what's unpaid</li>
+        <li>Build reports from invoice data without touching the web UI</li>
+      </ul>
+    </section>
+
+    <section class="hh-section">
+      <span class="hh-section__label">04</span>
+      <h2>Features</h2>
+      <ul>
+        <li>List, get, and sync received Peppol invoices, with date and sender filters</li>
+        <li>Extract embedded PDFs from Peppol documents</li>
+        <li>Sync issued sales invoices and credit notes, with customer filters</li>
+        <li>Mark invoices paid or unpaid — the only write operation</li>
+        <li><code>--json</code> output for scripting and agents</li>
+        <li>Single self-contained binary for macOS and Linux, with built-in self-update</li>
+      </ul>
+    </section>
+
+    <section class="hh-section">
+      <span class="hh-section__label">05</span>
+      <h2>Getting started</h2>
+      <p>Install, log in, sync:</p>
+      <pre><code><span class="prompt">$</span> curl -LsSf https://falco.houlahop.com/install | sh
+<span class="prompt">$</span> falco login
+<span class="prompt">$</span> falco peppol sync --out ./invoices --extract-pdf
+<span class="prompt">$</span> falco invoices sync --out ./sales --since 2026-01-01</code></pre>
+      <p>Source, documentation, and examples: <a href="https://github.com/plosson/falco-cli">github.com/plosson/falco-cli</a></p>
+    </section>
+
+  </main>
+
+  <footer class="hh-footer">
+    <div class="hh-footer__inner">
+      <span><a href="https://houlahop.com">houlahop</a></span>
+      <span>© 2026 · <a href="https://github.com/plosson">GitHub</a></span>
+    </div>
+  </footer>
+
+</body>
+</html>
