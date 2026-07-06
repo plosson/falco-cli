@@ -8,7 +8,7 @@ CLI for your Falco account — sync received peppol invoices, issued sales invoi
 curl -LsSf https://falcio.houlahop.com/install | sh
 ```
 
-Supported platforms: macOS (Apple Silicon), Linux x64 / arm64. The installer downloads a single self-contained binary from GitHub Releases into `~/.local/bin` (override with `FALCIO_INSTALL_DIR` or `--install-dir`).
+Supported platforms: macOS (Apple Silicon), Linux x64 / arm64, Windows x64. The installer downloads a single self-contained binary from GitHub Releases into `~/.local/bin` (override with `FALCIO_INSTALL_DIR` or `--install-dir`). On Windows, download `falcio-windows-x64.exe` from [GitHub Releases](https://github.com/plosson/falcio/releases/latest) and put it on your `PATH` as `falcio.exe`.
 
 ## Usage
 

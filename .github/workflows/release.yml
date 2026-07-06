@@ -57,6 +57,8 @@ jobs:
             artifact: falcio-linux-x64
           - target: linux-arm64
             artifact: falcio-linux-arm64
+          - target: windows-x64
+            artifact: falcio-windows-x64.exe
 
     steps:
       - name: Checkout

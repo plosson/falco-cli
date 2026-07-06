@@ -28,13 +28,14 @@ function getPlatform(): string {
   const arch = os.arch();
   if (platform === "darwin" && arch === "arm64") return "darwin-arm64";
   if (platform === "linux") return arch === "arm64" ? "linux-arm64" : "linux-x64";
+  if (platform === "win32" && arch === "x64") return "windows-x64";
   throw new Error(`Unsupported platform: ${platform}-${arch}`);
 }
 
 function isCompiledBinary(): boolean {
   // In compiled bun binaries, argv[0] is just "bun" (no path);
   // in dev mode it is a full path like "/Users/.../bun".
-  return process.argv[0] === "bun" && !process.execPath.endsWith("/bun");
+  return process.argv[0] === "bun" && !/[\\/]bun(\.exe)?$/.test(process.execPath);
 }
 
 async function fetchLatestRelease(): Promise<GitHubRelease> {
@@ -149,9 +150,26 @@ async function updateBinary(downloadUrl: string, targetPath: string): Promise<vo
   }
 
   console.error("Installing update...");
-  // The running process keeps the old inode open, so renaming over it is safe.
   fs.chmodSync(tmpFile, originalMode);
-  moveFile(tmpFile, targetPath);
+  if (os.platform() === "win32") {
+    // Windows locks a running exe against overwrite but allows renaming it away.
+    const oldFile = `${targetPath}.old`;
+    try {
+      fs.unlinkSync(oldFile);
+    } catch {
+      // Leftover from a previous update may not exist; ignore.
+    }
+    fs.renameSync(targetPath, oldFile);
+    try {
+      moveFile(tmpFile, targetPath);
+    } catch (err) {
+      fs.renameSync(oldFile, targetPath);
+      throw err;
+    }
+  } else {
+    // The running process keeps the old inode open, so renaming over it is safe.
+    moveFile(tmpFile, targetPath);
+  }
 }
 
 export async function runUpdate(args: string[]): Promise<number> {
@@ -183,7 +201,7 @@ export async function runUpdate(args: string[]): Promise<number> {
 
   const currentVersion = getVersion();
   const platform = getPlatform();
-  const assetName = `falcio-${platform}`;
+  const assetName = platform === "windows-x64" ? `falcio-${platform}.exe` : `falcio-${platform}`;
 
   console.error(`Current version: ${currentVersion}`);
   console.error("Checking for updates...");
@@ -233,7 +251,11 @@ export async function runUpdate(args: string[]): Promise<number> {
     console.error("");
     console.error("Automatic update failed. You can reinstall manually:");
     console.error("");
-    console.error(`  curl -LsSf https://falcio.houlahop.com/install | sh`);
+    if (os.platform() === "win32") {
+      console.error(`  Download ${assetName} from https://github.com/${GITHUB_REPO}/releases/latest`);
+    } else {
+      console.error(`  curl -LsSf https://falcio.houlahop.com/install | sh`);
+    }
     console.error("");
     throw error;
   }
