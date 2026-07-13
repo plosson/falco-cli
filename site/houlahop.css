@@ -135,6 +135,21 @@ a {
   color: var(--hh-ink);
 }
 
+/* Accent pill CTA — jump to the install section */
+.hh-nav .hh-cta {
+  background: var(--hh-accent);
+  color: var(--hh-bg);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+
+.hh-nav .hh-cta:hover {
+  color: var(--hh-bg);
+  opacity: 0.85;
+}
+
 /* ---- Hero (mission statement, if used) ---- */
 .hh-hero {
   max-width: var(--hh-max-width);

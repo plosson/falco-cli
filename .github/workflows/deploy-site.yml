@@ -27,4 +27,4 @@ jobs:
           SITEIO_TOKEN: ${{ secrets.SITEIO_TOKEN }}
 
       - name: Deploy site
-        run: siteio sites deploy site --subdomain falcio
+        run: siteio sites deploy site -n falcio
